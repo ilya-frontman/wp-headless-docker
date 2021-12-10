@@ -1,0 +1,69 @@
+version: '3'
+
+volumes:
+  MYSQL_DATA:
+    driver: local
+    driver_opts:
+      type: none
+      device: ${PWD}/db
+      o: bind
+
+
+  WP_DATA: 
+    driver: local
+    driver_opts:
+      type: none
+      device: ${PWD}/wordpress
+      o: bind
+      
+
+services:
+
+  composer:
+    image: composer
+    container_name: composer
+    volumes:
+      - ./composer/composer.json:/app/composer.json
+      - WP_DATA:/app:rw
+    command: update
+
+  wp:
+    image: wordpress:latest
+    restart: unless-stopped
+    container_name: wp
+    env_file: 
+      - ./env/wp.env
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_NAME: wordpress
+    links:
+      - db
+    volumes:
+      - WP_DATA:/var/www/html:rw
+    ports:
+      - 8080:80
+    depends_on:
+      - db
+      - composer
+
+  db:
+    image: mariadb
+    restart: unless-stopped
+    container_name: db
+    env_file:
+      - ./env/db.env
+    environment:
+      MYSQL_DATABASE: wordpress
+    volumes:
+      - MYSQL_DATA:/var/lib/mysql:rw
+
+  pma:
+    image: phpmyadmin/phpmyadmin
+    restart: unless-stopped
+    container_name: pma
+    links:
+      - db:db
+    ports:
+      - 8081:80
+    depends_on:
+      - db

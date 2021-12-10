@@ -1,0 +1,38 @@
+{
+	"minimum-stability": "dev",
+	"prefer-stable": true,
+	"repositories": [
+		{
+			"type": "composer",
+			"url": "https://wpackagist.org",
+			"only": [
+				"wpackagist-plugin/*",
+				"wpackagist-theme/*"
+			]
+		}
+	],
+	"require": {
+		"composer/installers": "~1.0",
+		"wpackagist-plugin/wordpress-seo": ">=17.5",
+		"wpackagist-plugin/wp-graphql": ">=1.6.7",
+		"wpackagist-plugin/add-wpgraphql-seo": ">=4.16.0",
+		"wpackagist-plugin/advanced-custom-fields": ">=5.10.2",
+		"wpackagist-plugin/polylang": ">=3.1.2",
+		"wpackagist-plugin/lingotek-translation": ">=1.5.2",
+		"wpackagist-plugin/acf-options-for-polylang": ">=1.1.10",
+		"valu/wp-graphql-polylang": ">=0.6.0",
+		"imranhsayed/headless-cms": ">=1.7.0",
+		"valu/wp-graphql-offset-pagination": ">=0.2.0",
+		"wp-graphql/wp-graphql-acf": ">=0.5.3"
+	},
+	"extra": {
+		"installer-paths": {
+			"wp-content/plugins/{$name}/": [
+				"type:wordpress-plugin"
+			],
+			"wp-content/themes/{$name}/": [
+				"type:wordpress-theme"
+			]
+		}
+	}
+}
