@@ -21,6 +21,7 @@
 		"wpackagist-plugin/lingotek-translation": ">=1.5.2",
 		"wpackagist-plugin/acf-options-for-polylang": ">=1.1.10",
 		"wpackagist-plugin/all-in-one-wp-security-and-firewall": ">=4.4.9",
+		"wpackagist-plugin/svg-support": ">=2.3.19",
 		"valu/wp-graphql-polylang": ">=0.6.0",
 		"imranhsayed/headless-cms": ">=1.7.0",
 		"valu/wp-graphql-offset-pagination": ">=0.2.0",
